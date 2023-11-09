@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct StepTableCell: View {
+    
+    @State var date: Date
+    @State var value: Double
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 0) {
+            VStack(spacing: 1) {
+                Text(date.printDayLetter().capitalized)
+                    .font(.callout)
+                Text(date.printDayNumber())
+                    .font(.caption)
+            }
+            .padding(.vertical, 4)
+            .padding(.horizontal, 5)
+            .frame(maxWidth: .infinity)
+            .background(.black.opacity(0.10))
+            VStack(spacing: 1) {
+                Text(String(format: "%.f", value))
+                Text("steps")
+            }
+            .padding(.vertical, 4)
+            .padding(.horizontal, 5)
+            .frame(maxWidth: .infinity)
+            .background(.black.opacity(0.05))
+        }
     }
 }
 
 #Preview {
-    StepTableCell()
+    StepTableCell(date: Date(), value: 3000)
 }

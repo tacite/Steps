@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct StepsTableView: View {
+    @Environment(StepsViewModel.self) private var vm
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.horizontal) {
+            LazyHStack(spacing: 0) {
+                ForEach(vm.weeklySteps, id: \.date) { data in
+                    StepTableCell(date: data.date, value: data.steps)
+                }
+            }
+        }
     }
 }
 
 #Preview {
     StepsTableView()
+        .environment(StepsViewModel())
 }
